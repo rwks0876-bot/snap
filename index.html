@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة روكس | Rocks - تطوير بوتات تيليجرام احترافية </title>
+    <meta name="description" content="منصة روكس المتخصصة في تطوير بوتات تيليجرام، تصميم مواقع الويب، تعديل البوتات الحالية، أنظمة الأمان والحماية. خبرة واسعة في Node.js، JavaScript، Python والمزيد.">
+    <meta name="keywords" content="منصة روكس, تطوير بوتات, تيليجرام, بوتات تيليجرام, تطوير مواقع, Node.js, JavaScript, Python, برمجة, تطوير برمجيات, منصه روكس,  html, صنع بوتات, إيكود,  منصه ايكود, روكس,  منصه صنع الروبوتات,  php, تطوير الويب,  انظمه تشغيل, بوتات, صنع موقع, صنع مواقع, ">
+    <meta name="author" content="القرصان روكس">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .hero-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* قسم الصورة الكبيرة تحت وسائل التواصل */
+        .floating-logo-section {
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-logo-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .floating-logo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 6px solid white;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 15px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(255, 255, 255, 0.2);
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotate(-2deg);
+            }
+        }
+        
+        .floating-logo:hover {
+            animation-play-state: paused;
+            transform: scale(1.05);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 20px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark-mode .floating-logo {
+            border: 6px solid var(--accent-color);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 15px rgba(249, 199, 79, 0.1),
+                0 0 30px rgba(249, 199, 79, 0.3);
+        }
+        
+        .dark-mode .floating-logo:hover {
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.7),
+                0 0 0 20px rgba(249, 199, 79, 0.2),
+                0 0 50px rgba(249, 199, 79, 0.4);
+        }
+        
+        /* تأثيرات إضاءة حول الصورة */
+        .floating-logo-container::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 30%,
+                rgba(255, 255, 255, 0) 70%
+            );
+            z-index: 1;
+            animation: pulseLight 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseLight {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+        
+        .dark-mode .floating-logo-container::before {
+            background: radial-gradient(
+                circle,
+                rgba(249, 199, 79, 0.2) 0%,
+                rgba(249, 199, 79, 0.1) 30%,
+                rgba(249, 199, 79, 0) 70%
+            );
+        }
+        
+        /* تأثير دوران خفيف حول الصورة */
+        .floating-logo-container::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            right: -40px;
+            bottom: -40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+            animation: rotate 15s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .dark-mode .floating-logo-container::after {
+            border: 2px solid rgba(249, 199, 79, 0.1);
+        }
+        
+        /* تأثيرات خلفية */
+        .floating-logo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(255, 255, 255, 0.01) 50%,
+                rgba(255, 255, 255, 0.03) 100%
+            );
+            z-index: 0;
+        }
+        
+        .dark-mode .floating-logo-section::before {
+            background: linear-gradient(
+                45deg,
+                rgba(249, 199, 79, 0.03) 0%,
+                rgba(10, 61, 98, 0.02) 50%,
+                rgba(249, 199, 79, 0.03) 100%
+            );
+        }
+        
+        .developer-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            aspect-ratio: 1/1;
+            border: 4px solid white;
+            transition: all 0.3s ease;
+        }
+        
+        .developer-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-logo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .floating-logo {
+                width: 250px;
+                height: 250px;
+                border-width: 5px;
+            }
+            
+            .floating-logo-container::before {
+                top: -25px;
+                left: -25px;
+                right: -25px;
+                bottom: -25px;
+            }
+            
+            .floating-logo-container::after {
+                top: -30px;
+                left: -30px;
+                right: -30px;
+                bottom: -30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .floating-logo {
+                width: 200px;
+                height: 200px;
+                border-width: 4px;
+            }
+            
+            .floating-logo-container::before {
+                top: -20px;
+                left: -20px;
+                right: -20px;
+                bottom: -20px;
+            }
+            
+            .floating-logo-container::after {
+                top: -25px;
+                left: -25px;
+                right: -25px;
+                bottom: -25px;
+            }
+            
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                25% {
+                    transform: translateY(-15px) rotate(2deg);
+                }
+                50% {
+                    transform: translateY(-8px) rotate(0deg);
+                }
+                75% {
+                    transform: translateY(-15px) rotate(-2deg);
+                }
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .floating-logo {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .floating-logo-container::before {
+                top: -15px;
+                left: -15px;
+                right: -15px;
+                bottom: -15px;
+            }
+            
+            .floating-logo-container::after {
+                top: -20px;
+                left: -20px;
+                right: -20px;
+                bottom: -20px;
+            }
+        }
+        
+        /* أنماط جديدة للعرض التدريجي */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            background-color: var(--accent-color);
+            margin-right: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .run-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-color), #ff9e4a);
+            color: #0d1b2a;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin: 15px 0;
+        }
+        
+        .run-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(249, 199, 79, 0.4);
+        }
+        
+        .run-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .run-button.running {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+        
+        .developer-explanation {
+            background: linear-gradient(135deg, rgba(10, 61, 98, 0.1) 0%, rgba(249, 199, 79, 0.1) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .developer-explanation h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .developer-explanation p {
+            color: var(--light-text);
+            line-height: 1.7;
+        }
+        
+        .code-comparison {
+            background: rgba(10, 61, 98, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .dark-mode .code-comparison {
+            background: rgba(249, 199, 79, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <svg class="logo-img" width="50" height="50" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" />
+                    <circle cx="35" cy="40" r="10" fill="#ffffff" />
+                    <circle cx="65" cy="40" r="10" fill="#ffffff" />
+                    <ellipse cx="35" cy="40" rx="5" ry="7" fill="currentColor" />
+                    <ellipse cx="65" cy="40" rx="5" ry="7" fill="currentColor" />
+                    <path d="M30 65 Q50 80 70 65" stroke="#ffffff" stroke-width="4" fill="none" />
+                    <rect x="40" y="25" width="20" height="10" fill="#ffffff" />
+                    <path d="M40 25 L45 15 L55 15 L60 25 Z" fill="#ffffff" />
+                    <path d="M30 20 L40 10 L60 10 L70 20 L65 25 L35 25 Z" fill="#ffffff" />
+                </svg>
+                <h1>روكس</h1>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#developer">المطور</a></li>
+                    <li><a href="#skills">الخبرات</a></li>
+                    <li><a href="#journey">رحلة المطور</a></li>
+                    <li><a href="#pages">صفحاتنا</a></li>
+                    <li><a href="#inquiry">التواصل</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="menuToggle">☰</button>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <!-- الشعار في بداية الصفحة -->
+            <div class="hero-logo-container">
+                <img src="aa.jpg" alt="شعار منصة روكس" class="hero-logo">
+            </div>
+            
+            <h2>منصة روكس لتطوير بوتات تيليجرام </h2>
+            <p>منصة روكس اختيارك الامثل نقدم حلول برمجية متكاملة ومبتكرة في عالم بوتات تيليجرام. خبرة واسعة في تطوير البوتات الذكية والأنظمة المتقدمة.</p>
+            <a href="https://t.me/QR_l4287BOT" class="cta-button"> اصنع بوت الآن 🤖 </a>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>خدماتنا</h2>
+            <p>نقدم مجموعة متكاملة من خدمات تطوير بوتات تيليجرام ومواقع الويب</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>تطوير بوتات تيليجرام</h3>
+                <p>تصميم وتطوير بوتات تيليجرام متقدمة ومخصصة حسب احتياجاتك</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>تعديل البوتات الحالية</h3>
+                <p>تحسين وتطوير البوتات الموجودة وإضافة الميزات الجديدة</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>أنظمة الأمان والحماية</h3>
+                <p>تطوير أنظمة أمنية متقدمة لحماية البوتات من الاختراق</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>قواعد البيانات</h3>
+                <p>تصميم وإدارة قواعد البيانات المتقدمة للبوتات</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>واجهات مستخدم تفاعلية</h3>
+                <p>تصميم واجهات مستخدم جذابة وسهلة الاستخدام للبوتات</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>تطوير مواقع الويب</h3>
+                <p>تصميم وتطوير مواقع ويب متجاوبة واحترافية بتقنيات حديثة</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>الدعم الفني المستمر</h3>
+                <p>تقديم الدعم الفني والصيانة الدورية للبوتات والمواقع</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المطور -->
+    <section class="developer" id="developer">
+        <div class="section-title">
+            <h2>المطور</h2>
+            <p>تعرف على المطور وراء منصة روكس</p>
+        </div>
+        <div class="developer-container">
+            <div class="developer-image">
+                <!-- صورة المطور -->
+                <img src="https://i.ibb.co/d4w0Rn68/781224110ec6.jpg" alt="صورة المطور القرصان روكس - مطور بوتات تيليجرام">
+            </div>
+            <div class="developer-info">
+                <h2>القرصان روكس</h2>
+                <p>مطور بوتات تيليجرام ومواقع الويب محترف أكثر من سنه من الخبرة في مجال البرمجة وتطوير البوتات. متخصص في إنشاء حلول تيليجرام متكاملة ومبتكرة تلبي احتياجات العملاء.</p>
+                <p>طالب بكالوريوس في الأمن السيبراني وشبكات الحاسوب، خبير بتطوير البرمجيات على منصتنا الرائدة .</p>
+                
+                <h3>الإنجازات:</h3>
+                <ul>
+                    <li>تطوير أكثر من 50 بوت تيليجرام بمختلف المستويات</li>
+                    <li>بناء أنظمة إدارة متكاملة عبر تيليجرام</li>
+                    <li>تطوير بوتات تجارية لشركات ومؤسسات</li>
+                    <li>إنشاء أنظمة دفع إلكتروني متكاملة مع تيليجرام</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخبرات التقنية -->
+    <section class="skills-section" id="skills">
+        <div class="skills-container">
+            <div class="section-title">
+                <h2>اللغات والتقنيات</h2>
+                <p>خبرات واسعة في مجموعة متنوعة من اللغات البرمجية والتقنيات الحديثة</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h4>Node.js</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h4>JavaScript</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h4>Java</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>OOP</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4>C++</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h4>Python</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h4>HTML</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h4>CSS</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <h4>PHP</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم رحلة المطور -->
+    <section class="developer-journey" id="journey">
+        <div class="section-title">
+            <h2>رحلة المطور</h2>
+            <p>شاهد كيف يمكن كتابة نفس البرنامج بلغات برمجة مختلفة</p>
+        </div>
+        
+        <div class="journey-container">
+            <!-- اختيار اللغة -->
+            <div class="language-selector">
+                <div class="selector-title">
+                    <i class="fas fa-code"></i>
+                    <h3>اختر لغة البرمجة لعرض الكود</h3>
+                </div>
+                
+                <div class="language-options">
+                    <button class="lang-btn active" data-lang="python">
+                        <i class="fab fa-python"></i>
+                        Python
+                    </button>
+                    <button class="lang-btn" data-lang="javascript">
+                        <i class="fab fa-js-square"></i>
+                        JavaScript
+                    </button>
+                    <button class="lang-btn" data-lang="php">
+                        <i class="fab fa-php"></i>
+                        PHP
+                    </button>
+                    <button class="lang-btn" data-lang="java">
+                        <i class="fab fa-java"></i>
+                        Java
+                    </button>
+                    <button class="lang-btn" data-lang="cpp">
+                        <i class="fas fa-cogs"></i>
+                        C++
+                    </button>
+                </div>
+            </div>
+            
+            <!-- عرض الكود -->
+            <div class="code-display">
+                <div class="code-header">
+                    <div class="code-title">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>عرض الكود</h3>
+                    </div>
+                    <div class="current-lang">
+                        <span id="currentLang">Python</span>
+                    </div>
+                </div>
+                
+                <div class="code-content">
+                    <!-- رسالة الترحيب العامة -->
+                    <div class="welcome-message">
+                        <div class="message-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>مرحباً بكم في منصة روكس</h4>
+                        <p>المنصة الرائدة لتطوير بوتات تيليجرام ومواقع الويب وبناء الأنظمة الذكية. منصة روكس اختيارك الأمثل 🤖🪄</p>
+                    </div>
+                    
+                    <!-- عرض الكود حسب اللغة -->
+                    <div class="language-code active" id="python-code">
+                        <pre><code class="language-python"># Python - منصة روكس لتطوير بوتات تيليجرام
+
+class RooksPlatform:
+    def __init__(self):
+        self.name = "منصة روكس"
+        self.services = ["تطوير بوتات تيليجرام", "تطوير مواقع الويب", "أنظمة الذكاء الاصطناعي"]
+        self.experience_years = 3
+    
+    def welcome_message(self):
+        message = f"""
+        🤖 مرحباً بكم في {self.name} 🪄
+        
+        المنصة الرائدة في مجال تطوير:
+        • بوتات تيليجرام الذكية
+        • مواقع الويب المتطورة
+        • الأنظمة الذكية والمبتكرة
+        
+        خبرة تزيد عن {self.experience_years} سنوات في البرمجة
+        وتطوير الحلول التقنية المتكاملة.
+        
+        {self.name} - اختيارك الأمثل للتميز التقني!
+        """
+        return message
+    
+    def calculate_projects(self, clients):
+        # حساب المشاريع الناجحة
+        successful_projects = clients * 0.95
+        return f"مشاريع ناجحة: {int(successful_projects)} من أصل {clients}"
+    
+    def show_services(self):
+        print("📋 خدمات منصة روكس:")
+        for i, service in enumerate(self.services, 1):
+            print(f"  {i}. {service}")
+
+# إنشاء مثيل من المنصة
+platform = RooksPlatform()
+
+# عرض رسالة الترحيب
+print(platform.welcome_message())
+
+# عرض الخدمات
+platform.show_services()
+
+# حساب المشاريع الناجحة
+clients = 1k
+print(f"\n📊 إحصائيات المنصة:")
+print(platform.calculate_projects(clients))
+print(f"💼 عملاء راضين: {clients}")
+print(f"⭐ تقييم: 3/5")</code></pre>
+                    </div>
+                    
+                    <div class="language-code" id="javascript-code">
+                        <pre><code class="language-javascript">// JavaScript - منصة روكس لتطوير بوتات تيليجرام
+
+class RooksPlatform {
+    constructor() {
+        this.name = "منصة روكس";
+        this.services = [
+            "تطوير بوتات تيليجرام",
+            "تطوير مواقع الويب", 
+            "أنظمة الذكاء الاصطناعي"
+        ];
+        this.experienceYears = 3;
+    }
+
+    welcomeMessage() {
+        return `
+        🤖 مرحباً بكم في ${this.name} 🪄
+        
+        المنصة الرائدة في مجال تطوير:
+        • بوتات تيليجرام الذكية
+        • مواقع الويب المتطورة
+        • الأنظمة الذكية والمبتكرة
+        
+        خبرة تزيد عن ${this.experienceYears} سنوات في البرمجة
+        وتطوير الحلول التقنية المتكاملة.
+        
+        ${this.name} - اختيارك الأمثل للتميز التقني!
+        `;
+    }
+
+    calculateProjects(clients) {
+        // حساب المشاريع الناجحة
+        const successfulProjects = clients * 0.95;
+        return \`مشاريع ناجحة: \${Math.floor(successfulProjects)} من أصل \${clients}\`;
+    }
+
+    showServices() {
+        console.log("📋 خدمات منصة روكس:");
+        this.services.forEach((service, index) => {
+            console.log(\`  \${index + 1}. \${service}\`);
+        });
+    }
+}
+
+// إنشاء مثيل من المنصة
+const platform = new RooksPlatform();
+
+// عرض رسالة الترحيب
+console.log(platform.welcomeMessage());
+
+// عرض الخدمات
+platform.showServices();
+
+// حساب المشاريع الناجحة
+const clients = 150;
+console.log(\`\\n📊 إحصائيات المنصة:\`);
+console.log(platform.calculateProjects(clients));
+console.log(\`💼 عملاء راضين: \${clients}\`);
+console.log(\`⭐ تقييم: 4.9/5\`);</code></pre>
+                    </div>
+                    
+                    <div class="language-code" id="php-code">
+                        <pre><code class="language-php">&lt;?php
+// PHP - منصة روكس لتطوير بوتات تيليجرام
+
+class RooksPlatform {
+    private $name;
+    private $services;
+    private $experienceYears;
+
+    public function __construct() {
+        $this->name = "منصة روكس";
+        $this->services = [
+            "تطوير بوتات تيليجرام",
+            "تطوير مواقع الويب",
+            "أنظمة الذكاء الاصطناعي"
+        ];
+        $this->experienceYears = 3;
+    }
+
+    public function welcomeMessage() {
+        return "
+        🤖 مرحباً بكم في {$this->name} 🪄
+        
+        المنصة الرائدة في مجال تطوير:
+        • بوتات تيليجرام الذكية
+        • مواقع الويب المتطورة
+        • الأنظمة الذكية والمبتكرة
+        
+        خبرة تزيد عن {$this->experienceYears} سنوات في البرمجة
+        وتطوير الحلول التقنية المتكاملة.
+        
+        {$this->name} - اختيارك الأمثل للتميز التقني!
+        ";
+    }
+
+    public function calculateProjects($clients) {
+        // حساب المشاريع الناجحة
+        $successfulProjects = $clients * 0.95;
+        return "مشاريع ناجحة: " . (int)$successfulProjects . " من أصل $clients";
+    }
+
+    public function showServices() {
+        echo "📋 خدمات منصة روكس:\\n";
+        foreach ($this->services as $index => $service) {
+            echo "  " . ($index + 1) . ". $service\\n";
+        }
+    }
+}
+
+// إنشاء مثيل من المنصة
+$platform = new RooksPlatform();
+
+// عرض رسالة الترحيب
+echo $platform->welcomeMessage();
+
+// عرض الخدمات
+$platform->showServices();
+
+// حساب المشاريع الناجحة
+$clients = 150;
+echo "\\n📊 إحصائيات المنصة:\\n";
+echo $platform->calculateProjects($clients) . "\\n";
+echo "💼 عملاء راضين: $clients\\n";
+echo "⭐ تقييم: 4.9/5\\n";
+?&gt;</code></pre>
+                    </div>
+                    
+                    <div class="language-code" id="java-code">
+                        <pre><code class="language-java">// Java - منصة روكس لتطوير بوتات تيليجرام
+
+public class RooksPlatform {
+    private String name;
+    private String[] services;
+    private int experienceYears;
+
+    public RooksPlatform() {
+        this.name = "منصة روكس";
+        this.services = new String[] {
+            "تطوير بوتات تيليجرام",
+            "تطوير مواقع الويب",
+            "أنظمة الذكاء الاصطناعي"
+        };
+        this.experienceYears = 3;
+    }
+
+    public String welcomeMessage() {
+        return """
+        🤖 مرحباً بكم في """ + this.name + """ 🪄
+        
+        المنصة الرائدة في مجال تطوير:
+        • بوتات تيليجرام الذكية
+        • مواقع الويب المتطورة
+        • الأنظمة الذكية والمبتكرة
+        
+        خبرة تزيد عن """ + this.experienceYears + """ سنوات في البرمجة
+        وتطوير الحلول التقنية المتكاملة.
+        
+        """ + this.name + """ - اختيارك الأمثل للتميز التقني!
+        """;
+    }
+
+    public String calculateProjects(int clients) {
+        // حساب المشاريع الناجحة
+        int successfulProjects = (int)(clients * 0.95);
+        return "مشاريع ناجحة: " + successfulProjects + " من أصل " + clients;
+    }
+
+    public void showServices() {
+        System.out.println("📋 خدمات منصة روكس:");
+        for (int i = 0; i < services.length; i++) {
+            System.out.println("  " + (i + 1) + ". " + services[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        // إنشاء مثيل من المنصة
+        RooksPlatform platform = new RooksPlatform();
+
+        // عرض رسالة الترحيب
+        System.out.println(platform.welcomeMessage());
+
+        // عرض الخدمات
+        platform.showServices();
+
+        // حساب المشاريع الناجحة
+        int clients = 150;
+        System.out.println("\n📊 إحصائيات المنصة:");
+        System.out.println(platform.calculateProjects(clients));
+        System.out.println("💼 عملاء راضين: " + clients);
+        System.out.println("⭐ تقييم: 4.9/5");
+    }
+}</code></pre>
+                    </div>
+                    
+                    <div class="language-code" id="cpp-code">
+                        <pre><code class="language-cpp">// C++ - منصة روكس لتطوير بوتات تيليجرام
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+class RooksPlatform {
+private:
+    string name;
+    vector&lt;string&gt; services;
+    int experienceYears;
+
+public:
+    RooksPlatform() {
+        name = "منصة روكس";
+        services = {
+            "تطوير بوتات تيليجرام",
+            "تطوير مواقع الويب",
+            "أنظمة الذكاء الاصطناعي"
+        };
+        experienceYears = 3;
+    }
+
+    string welcomeMessage() {
+        return R"(
+        🤖 مرحباً بكم في )" + name + R"( 🪄
+        
+        المنصة الرائدة في مجال تطوير:
+        • بوتات تيليجرام الذكية
+        • مواقع الويب المتطورة
+        • الأنظمة الذكية والمبتكرة
+        
+        خبرة تزيد عن )" + to_string(experienceYears) + R"( سنوات في البرمجة
+        وتطوير الحلول التقنية المتكاملة.
+        
+        )" + name + R"( - اختيارك الأمثل للتميز التقني!
+        )";
+    }
+
+    string calculateProjects(int clients) {
+        // حساب المشاريع الناجحة
+        int successfulProjects = static_cast&lt;int&gt;(clients * 0.95);
+        return "مشاريع ناجحة: " + to_string(successfulProjects) + " من أصل " + to_string(clients);
+    }
+
+    void showServices() {
+        cout << "📋 خدمات منصة روكس:" << endl;
+        for (size_t i = 0; i < services.size(); i++) {
+            cout << "  " << (i + 1) << ". " << services[i] << endl;
+        }
+    }
+};
+
+int main() {
+    // إنشاء مثيل من المنصة
+    RooksPlatform platform;
+
+    // عرض رسالة الترحيب
+    cout << platform.welcomeMessage() << endl;
+
+    // عرض الخدمات
+    platform.showServices();
+
+    // حساب المشاريع الناجحة
+    int clients = 150;
+    cout << "\n📊 إحصائيات المنصة:" << endl;
+    cout << platform.calculateProjects(clients) << endl;
+    cout << "💼 عملاء راضين: " + to_string(clients) << endl;
+    cout << "⭐ تقييم: 4.9/5" << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                    
+                    <!-- شرح من المطور -->
+                    <div class="developer-explanation">
+                        <h4><i class="fas fa-user-tie"></i> 
+                        
+                        <div class="code-comparison">
+                            <p><strong> </strong> 
+                        </div>
+                    </div>
+                    
+                    <!-- نتائج التنفيذ مع زر التشغيل -->
+                    <div class="execution-result">
+                        <div class="result-header">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>نتيجة البرنامج</h4>
+                        </div>
+                        
+                        <!-- زر التشغيل -->
+                        <div class="run-controls">
+                            <button class="run-button" id="runCodeBtn">
+                                <i class="fas fa-play"></i>
+                                تشغيل الكود
+                            </button>
+                            <button class="run-button" id="resetCodeBtn" style="background: #666; margin-right: 10px;">
+                                <i class="fas fa-redo"></i>
+                                إعادة تعيين
+                            </button>
+                        </div>
+                        
+                        <div class="result-content">
+                            <div class="result-output">
+                                <div class="terminal">
+                                    <div class="terminal-header">
+                                        <div class="terminal-dots">
+                                            <span class="dot red"></span>
+                                            <span class="dot yellow"></span>
+                                            <span class="dot green"></span>
+                                        </div>
+                                        <div class="terminal-title">اخراج الكود </div>
+                                    </div>
+                                    <div class="terminal-content" id="terminalOutput">
+                                        <!-- هنا سيتم عرض الناتج تدريجياً -->
+                                        <div class="output-line">🤖 انتظر تشغيل الكود...</div>
+                                        <div class="output-line">اضغط على زر "تشغيل الكود" لبدء العرض</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="result-info">
+                                <div class="info-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>جميع اللغات تنتج مهارات جديدة</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>العرض لأغراض تعليمية وتوضيحية</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>منصة روكس تدعم جميع اللغات</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>سيظهر الناتج تدريجياً مخرج الكود </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الصفحات المنفصلة -->
+    <section class="pages-section" id="pages">
+        <div class="pages-container">
+            <div class="section-title">
+                <h2 style="color: white;">صفحاتنا المنفصلة</h2>
+                <p style="color: #ccc;">استكشف جميع مشاريعنا ومنتجاتنا في صفحات منفصلة</p>
+            </div>
+            <div class="pages-grid">
+                <div class="page-item">
+                    <div class="page-icon">🤖</div>
+                    <h3>بوتات المطور روكس</h3>
+                    <p>اكتشف جميع البوتات التابعة لمنصة روكس. بوتات متعددة الاستخدامات تشمل القرآن الكريم، الذكاء الاصطناعي، التنزيلات، والمزيد.</p>
+                    <a href="#bots-page" class="page-link">زيارة الصفحة</a>
+                </div>
+                <div class="page-item">
+                    <div class="page-icon">🌐</div>
+                    <h3>مواقع المطور روكس</h3>
+                    <p>استكشف المواقع الإلكترونية التابعة لروكس. مواقع متخصصة في الذكاء الاصطناعي، القرآن الكريم، الترجمة، وتفسير الأحلام.</p>
+                    <a href="#sites-page" class="page-link">زيارة الصفحة</a>
+                </div>
+                <div class="page-item">
+                    <div class="page-icon">📺</div>
+                    <h3>قنوات روكس</h3>
+                    <p>انضم إلى قنواتنا على تيليجرام. قنوات متخصصة في نشر القرآن الكريم، البيع والشراء، والذكاء الاصطناعي.</p>
+                    <a href="#channels-page" class="page-link">زيارة الصفحة</a>
+                </div>
+                <div class="page-item">
+                    <div class="page-icon">⭐</div>
+                    <h3>أهم الأعمال</h3>
+                    <p>تعرف على أهم المشاريع والإنجازات التي قمنا بها. بوتات متقدمة ذات مميزات فريدة وتقنيات حديثة.</p>
+                    <a href="#works-page" class="page-link">زيارة الصفحة</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة البوتات -->
+    <section class="page-content" id="bots-page">
+        <div class="page-container">
+            <div class="section-title">
+                <a href="#pages" class="back-btn">العودة للصفحات</a>
+                <h2>بوتات المطور روكس</h2>
+                <p>البوتات التابعة للمنصة 🤖 🏴‍☠️</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="content-icon">🕋</div>
+                    <h4>بوت قرآن كريم</h4>
+                    <a href="https://t.me/vvvvshsgbot" target="_blank">@vvvvshsgbot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">☠️</div>
+                    <h4>بوت هكر مجاني</h4>
+                    <a href="https://t.me/QR_l4229BOT" target="_blank">@QR_l4229BOT</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🦾</div>
+                    <h4>بوت اختراق مجاني</h4>
+                    <a href="https://t.me/VIP_H3bot" target="_blank">@VIP_H3bot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🌐</div>
+                    <h4>بوت تنزيل فيديوهات</h4>
+                    <a href="https://t.me/k_tt_r90BOT" target="_blank">@k_tt_r90BOT</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🎑</div>
+                    <h4>بوت تصميم صور</h4>
+                    <a href="https://t.me/ioabajababot" target="_blank">@ioabajababot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">💌</div>
+                    <h4>إنشاء بريد إلكتروني</h4>
+                    <a href="https://t.me/ksj_33bot" target="_blank">@ksj_33bot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">📄</div>
+                    <h4>بوت صنع ملفات PDF</h4>
+                    <a href="https://t.me/music_ii3bot" target="_blank">@music_ii3bot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🖋</div>
+                    <h4>بوت معاني الأسماء</h4>
+                    <a href="https://t.me/sm_drebot" target="_blank">@sm_drebot</a>
+                </div>
+                <!-- البوتات المضافة -->
+                <div class="content-card">
+                    <div class="content-icon">🎵</div>
+                    <h4>بوت تعديل الأغاني</h4>
+                    <a href="https://t.me/xzas_yybot" target="_blank">@xzas_yybot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🖼️</div>
+                    <h4>صنع ملصقات</h4>
+                    <a href="https://t.me/keep_pabot" target="_blank">@keep_pabot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🤖</div>
+                    <h4>منصة إيكود لصنع الروبوتات</h4>
+                    <a href="https://t.me/QR_l4287BOT" target="_blank">@QR_l4287BOT</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🔍</div>
+                    <h4>بوت البحث عن الأغاني</h4>
+                    <a href="https://t.me/yywvacbot" target="_blank">@yywvacbot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🎮 </div>
+                    <h4>بوت العاب اونلاين </h4>
+                    <a href="https:/t.me/zak_kipbot" target="_blank">@zak_kipbot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">✨</div>
+                    <h4>بوت زخرفة أسماء</h4>
+                    <a href="https://t.me/mika_ybot" target="_blank">@mika_ybot</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🌐</div>
+                    <h4>بوت ترجمة</h4>
+                    <a href="https://t.me/SML_ibot" target="_blank">@SML_ibot</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة المواقع -->
+    <section class="page-content" id="sites-page">
+        <div class="page-container">
+            <div class="section-title">
+                <a href="#pages" class="back-btn">العودة للصفحات</a>
+                <h2>مواقع المطور روكس</h2>
+                <p>مواقع تابعة لنا 🌐 🏴‍☠️</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="content-icon">🧠</div>
+                    <h4>ذكاء اصطناعي</h4>
+                    <a href="http://nikai.pages.dev" target="_blank">http://nikai.pages.dev</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🕋</div>
+                    <h4>قرآن كريم</h4>
+                    <a href="https://quran7.pages.dev" target="_blank">https://quran7.pages.dev</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🌍</div>
+                    <h4>ترجمة بعدة لغات</h4>
+                    <a href="http://transla.pages.dev" target="_blank">http://transla.pages.dev</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🏴‍☠️</div>
+                    <h4>متجر القراصنة</h4>
+                    <a href="https://roks2.pages.dev" target="_blank">https://roks2.pages.dev</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🔍</div>
+                    <h4>جلب معلومات IP</h4>
+                    <a href="https://roxip.pages.dev" target="_blank">https://roxip.pages.dev</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">😴</div>
+                    <h4>تفسير الأحلام</h4>
+                    <a href="https://dream8.pages.dev" target="_blank">https://dream8.pages.dev</a>
+                </div>
+            </div>
+            <div class="section-title" style="margin-top: 40px;">
+                <p>تعمل بافضل أداء وسرعة ✅</p>
+                <p>مواقع الويب التابعة للمنصة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة القنوات -->
+    <section class="page-content" id="channels-page">
+        <div class="page-container">
+            <div class="section-title">
+                <a href="#pages" class="back-btn">العودة للصفحات</a>
+                <h2>قنوات روكس</h2>
+                <p>قنواتنا على تيليجرام</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="content-icon">📖</div>
+                    <h4>قناة نشر القرآن</h4>
+                    <a href="https://t.me/VlP_2P" target="_blank">@VlP_2P</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">💰</div>
+                    <h4>قناة بيع وشراء</h4>
+                    <a href="https://t.me/VlP_13" target="_blank">@VlP_13</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🤖</div>
+                    <h4>الذكاء الاصطناعي</h4>
+                    <a href="https://t.me/iko_ai" target="_blank">@iko_ai</a>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">⚓</div>
+                    <h4>قناة قراصنة روكس</h4>
+                    <a href="https://t.me/IUE_E" target="_blank">@IUE_E</a>
+                </div>
+                <!-- القناة المضافة -->
+                <div class="content-card">
+                    <div class="content-icon">🏭</div>
+                    <h4>منصة إيكود لصنع الروبوتات</h4>
+                    <a href="https://t.me/O_EOB" target="_blank">@O_EOB</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة الأعمال -->
+    <section class="page-content" id="works-page">
+        <div class="page-container">
+            <div class="section-title">
+                <a href="#pages" class="back-btn">العودة للصفحات</a>
+                <h2>أهم الأعمال</h2>
+                <p>أهم أعمالنا في البوتات ✈️</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="content-icon">🤖</div>
+                    <h4>البوت الأساسي</h4>
+                    <p>@VIP_H3bot</p>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🎵</div>
+                    <h4>بوت المميزات</h4>
+                    <p>@zak_kipbot</p>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🫶</div>
+                    <h4>بوت الشروحات الافضل</h4>
+                    <p>@QR_l4229BOT</p>
+                </div>
+                <div class="content-card">
+                    <div class="content-icon">🧠</div>
+                    <h4>بوت الذكاء الاصطناعي</h4>
+                    <p>@SI_M_FIBot</p>
+                </div>
+                <!-- بوت المميزات المضافة -->
+                <div class="content-card">
+                    <div class="content-icon">⭐</div>
+                    <h4>بوت المميزات</h4>
+                    <p>@HHH1Dbot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاستفسار -->
+    <section class="inquiry">
+        <div class="section-title">
+            <h2 style="color: white;">تواصل معنا</h2>
+            <p style="color: #ccc;">أرسل استفسارك أو اطلب خدمة وسنرد عليك في أقرب وقت</p>
+        </div>
+        <div class="inquiry-container">
+            <form class="inquiry-form" id="inquiryForm">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">وسيلة التواصل (تيليجرام أو واتساب):</label>
+                    <input type="text" id="contact" name="contact" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="type">نوع الخدمة المطلوبة:</label>
+                    <select id="type" name="type" required>
+                        <option value="">اختر نوع الخدمة</option>
+                        <option value="تطوير بوت جديد">تطوير بوت جديد</option>
+                        <option value="تعديل بوت موجود">تعديل بوت موجود</option>
+                        <option value="استشارة تقنية">استشارة تقنية</option>
+                        <option value="صيانة بوت">صيانة بوت</option>
+                        <option value="تطوير موقع ويب">تطوير موقع ويب</option>
+                        <option value="خدمة أخرى">خدمة أخرى</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">تفاصيل الطلب:</label>
+                    <textarea id="message" name="message" required placeholder="صف متطلباتك بالتفصيل..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label style="color: white;">تقييم الخدمة (إن وجد):</label>
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">إرسال الطلب</button>
+                
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- وسائل التواصل -->
+    <section class="contact" id="inquiry">
+        <div class="section-title">
+            <h2>وسائل التواصل</h2>
+            <p>تواصل معنا عبر القنوات التالية</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h3>تيليجرام</h3>
+                <a href="https://t.me/QR_l4" target="_blank">@QR_l4</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>واتساب</h3>
+                <a href="https://wa.me/+77071138332" target="_blank">+77071138332</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3>انستجرام</h3>
+                <a href="https://instagram.com/x.s_ik" target="_blank">@x.s_ik</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>بوت تيليجرام</h3>
+                <a href="https://t.me/jok_312_er21bot" target="_blank">@jok_312_er21bot</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>تكنولوجيا المعلومات</h3>
+                <a href="https://t.me/+K7P7A40PaOIwNGY0" target="_blank">انضم للقناة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم وسائل التواصل -->
+    <section class="floating-logo-section">
+        <div class="floating-logo-container">
+            <img src="aa.jpg" alt="شعار منصة روكس" class="floating-logo">
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">منصة روكس</div>
+                <p>منصة متخصصة في تطوير بوتات تيليجرام بتقنيات حديثة وحلول مبتكرة. نقدم خدمات تطوير متكاملة تلبي احتياجات العملاء في مختلف المجالات.</p>
+            </div>
+            <div class="footer-links">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#developer">المطور</a></li>
+                    <li><a href="#skills">الخبرات</a></li>
+                    <li><a href="#journey">رحلة المطور</a></li>
+                    <li><a href="#pages">صفحاتنا</a></li>
+                    <li><a href="#inquiry">التواصل</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>معلومات التواصل</h3>
+                <p><i class="fas fa-map-marker-alt"></i>🇾🇪 اليمن</p>
+                <p><i class="fas fa-envelope"></i> rocks@eyoo.org </p>
+                <p><i class="fas fa-phone"></i> +77071138332 </p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 منصة روكس | Rooks - تطوير بوتات تيليجرام. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- زر تغيير--> 
+    <button class="theme-toggle-bottom" id="themeToggleBottom">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
